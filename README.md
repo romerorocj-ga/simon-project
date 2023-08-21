@@ -21,7 +21,7 @@ Game of lights and sounds in which players must repeat random sequences of light
     - I want to be able to click all four colors
     - I want to be able to click the start button
     - I want to able to see what color I need to follow and select
-    - I want to be able to win if I pass all five levels
+    - I want to be able to win if I pass all ten levels
     - I want to know if I won
     - I want to be able to experince each level harder
 
@@ -33,11 +33,11 @@ Game of lights and sounds in which players must repeat random sequences of light
 - The game ends if the player misses a step in the sequence.
 
 - State Variables
-    - game board is 1 big array that holds 4 smaller arrays for each color 
-    - turn - player 1 = 1
-    - winner - null || 1
-    - the sequence is being generated randomly 
-    
+    - Game board is 1 big array that holds 4 smaller arrays for each color 
+    - Turn - player 1 = 1
+    - Winner - null || 1
+    - The sequence is being generated randomly 
+
 - Cache DOM ELments
     - Buttons for each color
     - Start button
@@ -45,20 +45,26 @@ Game of lights and sounds in which players must repeat random sequences of light
 
 - Upon loading the app
     - Intialze all state variables
-        - create the array of 4 nested arrays
-        - turn variable should be set to 1 for Player One
-        - winner should be null
+        - Create the array of 4 nested arrays
+        - Turn variable should be set to 1 for Player One
+        - Winner should be null
     - Render changes to the DOM
-        - render the board of the game
-        - render the four colors on each corner of circle
-        - do not render play again button 
+        - Render the board of the game
+        - Render the four colors on each corner of circle
+        - Do not render play again button 
     - Wait for player interaction
     
 - Handle a player clicking the start button
+    - The game starts by lighting up the first color and following colors for that sequence
 
 - Handle a player selecting the the colored buttons to follow the sequence
+    - The player sees the sequence by each color lighting up when selected, they can then follow that sequece by 'clicking' what tile was lit up
+    - The player should also hear audio everytime it lights up and once they click it
+    - If the player gets the sequence right they move on to the next level, if wrong it resets from the begining
 
 - Check for Winner if beats all levels
+    -  When the player wins, a congrats message will show up and the play again button.
+    - If they lose the Try again message the play again button will show
 
 
 ## Design and Asthetics of the app
