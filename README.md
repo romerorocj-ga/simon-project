@@ -11,10 +11,10 @@ Game of lights and sounds in which players must repeat random sequences of light
 - Link to game:
 
 - Instructions
- - Get ready to watch, remember, repeat! 
- - players must repeat random sequences of lights by pressing the colored pads in the correct order.
- - fast-paced play, with lights and sounds that can challenge you.
- - repeat the patterns and advance to higher levels
+    - Get ready to watch, remember, repeat! 
+    - Players must repeat random sequences of lights by pressing the colored pads in the correct order.
+    - Fast-paced play, with lights and sounds that can challenge you.
+    - Repeat the patterns and advance to higher levels
 
 
 - As a user
@@ -33,13 +33,14 @@ Game of lights and sounds in which players must repeat random sequences of light
 - The game ends if the player misses a step in the sequence.
 
 - State Variables
-    - game board is 1 big array that holds 4 smaller arrays
+    - game board is 1 big array that holds 4 smaller arrays for each color 
     - turn - player 1 = 1
     - winner - null || 1
-
+    - the sequence is being generated randomly 
+    
 - Cache DOM ELments
     - Buttons for each color
-    - start button
+    - Start button
     - Play Again button
 
 - Upon loading the app
@@ -51,7 +52,7 @@ Game of lights and sounds in which players must repeat random sequences of light
         - render the board of the game
         - render the four colors on each corner of circle
         - do not render play again button 
-    - wait for player interaction
+    - Wait for player interaction
     
 - Handle a player clicking the start button
 
