@@ -1,16 +1,30 @@
 let moves
 let totalMoves
 let currentLevel = 1
+const audioElements = {
+    '1': document.getElementById('audio_yellow'),
+    '2': document.getElementById('audio_red'),
+    '3': document.getElementById('audio_blue'),
+    '4': document.getElementById('audio_green')
+}
 
 function highlight(panelPos, time) {
     const panel = document.querySelector(`.color-panels[pos="${panelPos}"]`)
 
     setTimeout(() => {
         panel.classList.add('active')
+        playAudio(panelPos)
         setTimeout(() => {
             panel.classList.remove('active')
         }, 300)
     }, time)
+}
+function playAudio(panelPos) {
+    const audio = audioElements[panelPos]
+    if (audio) {
+        audio.currentTime = 0
+        audio.play()
+    }
 }
 
 function sequenceMoves() {
@@ -64,6 +78,8 @@ function panelClick(e) {
             }
         }
     } else {
+        currentLevel = 1
+        updateLevel()
         const gameMessage = document.querySelector('#game-message')
         gameMessage.innerHTML = 'GAME OVER, TRY AGAIN!'
         setTimeout(() => {
@@ -81,7 +97,7 @@ function updateLevel() {
 
 function win() {
     const gameMessage = document.querySelector('#game-message')
-    gameMessage.innerHTML = 'Congratulations! You have won!'
+    gameMessage.innerHTML = 'WINNER, WINNER, CHICKEN DINNER!'
     setTimeout(() => {
         const startButton = document.querySelector('#start-button')
         startButton.style.display = 'block'
@@ -92,5 +108,10 @@ function win() {
 document.querySelector('#start-button').addEventListener('click', startGame)
 
 document.querySelectorAll('.color-panels').forEach(panel => {
-    panel.addEventListener('click', panelClick)
+    panel.addEventListener('click', (e) => {
+        const panelPos = e.target.getAttribute('pos');
+        highlight(panelPos, 0);
+        playAudio(panelPos);
+        panelClick(e);
+    });
 });
