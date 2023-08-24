@@ -24,10 +24,10 @@ Game of lights and sounds in which players must repeat random sequences of light
     - I want to be able to experince each level harder
 
 ## Screenshots of Final Game
-![Alt text](Initial_Start_Game.png)
-![Alt text](Playing_The_Game.png)
-![Alt text](Lose_The_Game.png)
-![Alt text](Win_The_Game.png)
+![Alt text](startofgame.png)
+![Alt text](playingthegame.png)
+![Alt text](lossofgame.png)
+![Alt text](wonthegame.png)
 
 ## Pseudocode
 -  Four different buttons, with a unique color and sound which is activated when pressed
