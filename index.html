@@ -5,28 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simon Game</title>
     <link rel="stylesheet" href="style.css"/>
-    <script defer src="main.js"></script>
 </head>
 <body>
-    <div class="button-container">
-        <button id="start-button">Start Game</button>
-    </div>
-    <div class="hide game-container">
         <div class="simon-game">
-            <div class="color-panels topLeft"></div>
-            <div class="color-panels topRight"></div> 
-            <div class="color-panels bottomLeft"></div>
-            <div class="color-panels bottomRight"></div>
+            <div class="color-panels topLeft" pos="1"></div>
+            <div class="color-panels topRight" pos="2"></div> 
+            <div class="color-panels bottomLeft" pos="3"></div>
+            <div class="color-panels bottomRight" pos="4"></div>
         </div>
         <div id="buttom">
             <div id="game-message"></div>
+            <button id="start-button">Start Game</button>
             <div class="title">SIMON</div>
             <div class="level">00</div>
-
         </div>
-    </div>
-</body>
-
         <div>
             <audio
               id="audio_yellow"
@@ -49,5 +41,6 @@
               data-sound="green"
             ></audio>
           </div>
+        <script defer src="main.js"></script>
 </body>
 </html>

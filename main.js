@@ -2,68 +2,74 @@ let moves
 let totalMoves
 
 function highlight(panelPos, time) {
+    const panel = document.querySelector(`.color-panels[pos="${panelPos}"]`);
+
     setTimeout(() => {
-        document.querySelector('.color-panels[pos="' + panelPos + '"]').classList.add('active')
+        panel.classList.add('active');
         setTimeout(() => {
-            document.querySelector('.color-panels[pos="' + panelPos + '"]').classList.remove('active')
-        }, 300)
-    }, time)
+            panel.classList.remove('active');
+        }, 300);
+    }, time);
 }
 
-function sequenceMoves(current) {
-    moves.push(Math.floor(Math.random() * 4) + 1)
-    if(current < totalMoves) {
-        sequenceMoves(++current)
+function sequenceMoves() {
+    for (let i = 0; i < totalMoves; i++) {
+        moves.push(Math.floor(Math.random() * 4) + 1);
     }
 }
 
 function startGame() {
-    moves = []
-    totalMoves = 2
-    document.querySelector('#start-button').style.display = 'none'
-    document.querySelector('#game-message').style.display = 'block'
+    moves = [];
+    totalMoves = 2;
+    const startButton = document.querySelector('#start-button');
+    const gameMessage = document.querySelector('#game-message');
+    
+    startButton.style.display = 'none';
+    gameMessage.style.display = 'block';
+    sequence();
 }
 
 function sequence() {
-    sequenceMoves(1)
-    document.querySelector(('#game-message')).innerHTML = 'Simon Says'
+    moves = [];
+    sequenceMoves(1);
 
-    for (let i = 0; i < moves.length; i++ ) {
-        highlight(moves[i], 600 * 1)
-    }
+    const gameMessage = document.querySelector('#game-message');
+    gameMessage.innerHTML = 'Simon Says';
+
+    moves.forEach((move, i) => {
+        highlight(move, 600 * i);
+    });
+
     setTimeout(() => {
-        document.querySelector('#game-message').innerHTML = 'Repeat the Sequence'
-    }, 600 * moves.length)
+        gameMessage.innerHTML = 'Repeat the Sequence';
+    }, 600 * moves.length);
 }
 
 function panelClick(e) {
-    let panelPos = e.target.getAttribute('pos')
-    highlight(panelPos, 0)
+    const panelPos = e.target.getAttribute('pos');
+    highlight(panelPos, 0);
 
-    if(moves && moves.length) {
-        if (moves[0] == panelPos) {
+    if (moves.length > 0 && parseInt(moves[0]) === parseInt(panelPos)) {
+        moves.shift();
 
-            if(!moves.length) {
-                totalMoves++
-                setTimeout(() => {
-                    sequence()
-                }, 1000)
-            }
+        if (moves.length === 0) {
+            totalMoves++;
+            setTimeout(sequence, 1000);
         }
-        else {
-            document.querySelector('#game-message').innerHTML = 'GAME OVER, TRY AGAIN!'
-            setTimeout(() => {
-                document.querySelector('#start-button').style.display = 'block'
-                document.querySelector(('#game-message')).style.display = 'none'
-            }, 1000)
-        }
+    } else {
+        const gameMessage = document.querySelector('#game-message');
+        gameMessage.innerHTML = 'GAME OVER, TRY AGAIN!';
+        setTimeout(() => {
+            const startButton = document.querySelector('#start-button');
+            const gameMessage = document.querySelector('#game-message');
+            startButton.style.display = 'block';
+            gameMessage.style.display = 'none';
+        }, 1000);
     }
-
 }
 
-document.querySelector('#start-button').addEventListener('click', startGame)
-let cells= Array.from(document.querySelectorAll('.color-panels'))
+document.querySelector('#start-button').addEventListener('click', startGame);
 
-panels.forEach(panel => {
-    panel.addEventListener('click',panelClick)
-})
+document.querySelectorAll('.color-panels').forEach(panel => {
+    panel.addEventListener('click', panelClick);
+});

@@ -1,18 +1,14 @@
-body {
-    background-color: white;
+html, body {
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.game-container {
-    background-color: white;
-    height: 600px;
-    width: 600px;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    border-radius: 50%;
+#game-message {
+    color: white;
 }
-
 .simon-game {
     height: 500px;
     width: 500px;
@@ -20,9 +16,38 @@ body {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    background-color: black;
     border-radius: 50%;
 }
+
+#bottom {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    color:white;
+    text-align: center;
+}
+
+button {
+    font-size: 1.5rem;
+    padding: 0.5rem 1.5rem;
+}
+
+.color-panels {
+    height: 50%;
+    width: 50%;
+    opacity: 0.5;
+    float: left;
+}
+
+.color-panels.active {
+    opacity: 1;
+}
+
+.color-panels:nth-child(1) { background-color: red;}
+.color-panels:nth-child(2) { background-color: blue;}
+.color-panels:nth-child(3) { background-color: green;}
+.color-panels:nth-child(4) { background-color: yellow;}
+
+
 .simon-game:before {
     position: absolute;
     content: "";
@@ -35,19 +60,24 @@ body {
     left: 50%;
     border-radius: 50%;
 }
-
-.color-panels {
-    height: 13em;
-    width: 14em;
-    position: absolute
+.simon-game {
+    position: absolute;
+    content: "";
+    background-color: rgb(255, 255, 255);
+    height: 500px;
+    width: 500px;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
 }
-
 .title {
     background-color: rgb(255, 255, 255);
     font-size: 35px;
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 45%;
+    top: 50%;
     left: 50%;
     z-index: 1;
     height: 40px;
@@ -56,14 +86,13 @@ body {
     place-items: center;
     display: grid;
 }
-
 .level {
     color: red;
     background-color: rgb(115, 39, 39);
     font-size: 20px;
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 60%;
+    top: 56%;
     left: 50%;
     z-index: 1;
     height: 40px;
@@ -71,56 +100,44 @@ body {
     border-radius: 5%;
     place-items: center;
     display: grid;
-
 }
-
 .topLeft {
-    background-color: red;
-    top: 50%;
-    left: 50%;
-    margin: -210px 0px 0px -210px;
-    height: 200px;
-    width: 200px;
-    border-radius: 200px 0 0 0;
+    top: 45%;
+    left: 45%;
+    margin: -200px 0px 0px -200px;
+    height: 210px;
+    width: 210px;
+    border-radius: 210px 0 0 0;
     box-sizing: border-box;
     position: absolute;
-    
 }
-
 .topRight {
-    background-color:blue;
-    top: 50%;
-    left: 51%;
-    margin: -210px 0px 0px 0px;
+    top: 45%;
+    left: 53%;
+    margin: -200px 0px 0px 0px;
     box-sizing: border-box;
     position: absolute;
-    height: 200px;
-    width: 200px;
-    border-radius: 0 200px 0 0;
+    height: 210px;
+    width: 210px;
+    border-radius: 0 210px 0 0;
 }
-
-
 .bottomLeft {
-    background-color: yellow;
-    top: 51%;
-    left: 50%;
-    margin: 0px -200px 0px -210px;
+    top: 53%;
+    left: 47%;
+    margin: 0px -210px 0px -210px;
     box-sizing: border-box;
     position: absolute;
-    height: 200px;
-    width: 200px;
-    border-radius: 0 0 0 200px;
+    height: 210px;
+    width: 210px;
+    border-radius: 0 0 0 210px;
 }
-
-
 .bottomRight {
-    background-color: green;
-    top: 51%;
-    left: 51%;
+    top: 53%;
+    left: 53%;
     margin: 0px 0px -210px 0px;
     box-sizing: border-box;
     position: absolute;
-    height: 200px;
-    width: 200px;
-    border-radius: 0 0 200px 0;
+    height: 210px;
+    width: 210px;
+    border-radius: 0 0 210px 0;
 }
