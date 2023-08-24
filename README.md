@@ -7,7 +7,7 @@ Game of lights and sounds in which players must repeat random sequences of light
 - Javascript
 
 ## Getting Started
-- Link to game:
+- Link to Play Game: https://romerorocj-ga.github.io/simon-project/
 
 - Instructions
     - Get ready to watch, remember, repeat! 
@@ -22,6 +22,12 @@ Game of lights and sounds in which players must repeat random sequences of light
     - I want to be able to win if I pass all ten levels
     - I want to know if I won
     - I want to be able to experince each level harder
+
+## Screenshots of Final Game
+![Alt text](Initial_Start_Game.png)
+![Alt text](Playing_The_Game.png)
+![Alt text](Lose_The_Game.png)
+![Alt text](Win_The_Game.png)
 
 ## Pseudocode
 -  Four different buttons, with a unique color and sound which is activated when pressed
