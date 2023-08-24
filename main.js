@@ -1,101 +1,69 @@
-/*----- state variables -----*/
-let compSequence= []
-let playerSequence= []
-let highlight
-let win
-let intervalId
-let playerTurn
-let compTurn
-let correct
- /*----- cached elements  -----*/
- const topLeft = document.querySelector('.top-left-btn')
- const topRight = document.querySelector('.top-right-btn')
- const bottomLeft = document.querySelector('.bottom-left-btn')
- const bottomRight = document.querySelector('.bottom-right-btn')
- const startGameBtn = document.querySelector('.button')
- /*----- event listeners -----*/
+let moves
+let totalMoves
 
- function startGameOnClick(_evt) {
-      play()
-    }
-startGameBtn.addEventListener('click', startGameOnClick)
-
-function play() {
-    win = false
-    compSequence = []
-    playerSequence = []
-    highlight = 0
-    intervalId = 0
-    playerTurn = 1
-    correct= true
-    for (let i = 0; i < 10; i++) {
-     compSequence.push(Math.floor(Math.random() * 4) + 1)  
-    }
-    compTurn = true
-
-    intervalId = setInterval(simonTurn, 1000)
-}
-
-function simonTurn() {
-    if (highlight == playerTurn) {
-        clearInterval(intervalId)
-        compTurn = false
-        clearColor()
-    }
-    if (compTurn) {
-        clearColor()
+function highlight(panelPos, time) {
+    setTimeout(() => {
+        document.querySelector('.color-panels[pos="' + panelPos + '"]').classList.add('active')
         setTimeout(() => {
-            if (compSequence[highlight] == 1) red()
-            if (compSequence[highlight] == 2) blue()
-            if (compSequence[highlight] == 3) green()
-            if (compSequence[highlight] == 4) yellow()
-            highlight++
-        }, 500) 
+            document.querySelector('.color-panels[pos="' + panelPos + '"]').classList.remove('active')
+        }, 300)
+    }, time)
+}
+
+function sequenceMoves(current) {
+    moves.push(Math.floor(Math.random() * 4) + 1)
+    if(current < totalMoves) {
+        sequenceMoves(++current)
     }
 }
 
-function clearColor() {
-    topLeft.style.backgroundColor = 'red'
-    topRight.style.backgroundColor = 'blue'
-    bottomRight.style.backgroundColor = 'green'
-    bottomLeft.style.backgroundColor = 'yellow'
+function startGame() {
+    moves = []
+    totalMoves = 2
+    document.querySelector('#start-button').style.display = 'none'
+    document.querySelector('#game-message').style.display = 'block'
 }
 
-function red() {
-    if(noise) {
-        let audio = document.getElementById('audio_red')
-        audio.play()
+function sequence() {
+    sequenceMoves(1)
+    document.querySelector(('#game-message')).innerHTML = 'Simon Says'
+
+    for (let i = 0; i < moves.length; i++ ) {
+        highlight(moves[i], 600 * 1)
     }
-    noise = true
-    topLeft.style.backgroundColor = 'pink'
+    setTimeout(() => {
+        document.querySelector('#game-message').innerHTML = 'Repeat the Sequence'
+    }, 600 * moves.length)
 }
 
-function blue() {
-    if(noise) {
-        let audio = document.getElementById('audio_blue')
-        audio.play()
+function panelClick(e) {
+    let panelPos = e.target.getAttribute('pos')
+    highlight(panelPos, 0)
+
+    if(moves && moves.length) {
+        if (moves[0] == panelPos) {
+
+            if(!moves.length) {
+                totalMoves++
+                setTimeout(() => {
+                    sequence()
+                }, 1000)
+            }
+        }
+        else {
+            document.querySelector('#game-message').innerHTML = 'GAME OVER, TRY AGAIN!'
+            setTimeout(() => {
+                document.querySelector('#start-button').style.display = 'block'
+                document.querySelector(('#game-message')).style.display = 'none'
+            }, 1000)
+        }
     }
-    noise = true
-    topRight.style.backgroundColor = 'lightblue'
+
 }
 
-function green() {
-    if(noise) {
-        let audio = document.getElementById('audio_green')
-        audio.play()
-    }
-    noise = true
-    bottomRight.style.backgroundColor = 'light green'
-}
+document.querySelector('#start-button').addEventListener('click', startGame)
+let cells= Array.from(document.querySelectorAll('.color-panels'))
 
-function yellow() {
-    if(noise) {
-        let audio = document.getElementById('audio_yellow')
-        audio.play()
-    }
-    noise = true
-    bottomLeft.style.backgroundColor = 'lightyellow'
-}
-
-
- 
+panels.forEach(panel => {
+    panel.addEventListener('click',panelClick)
+})
