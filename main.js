@@ -38,7 +38,6 @@ function startGame() {
     totalMoves = 2
     const startButton = document.querySelector('#start-button')
     const gameMessage = document.querySelector('#game-message')
-    
     startButton.style.display = 'none'
     gameMessage.style.display = 'block'
     sequence();
@@ -56,7 +55,7 @@ function sequence() {
     });
 
     setTimeout(() => {
-        gameMessage.innerHTML = 'Repeat the Sequence'
+        gameMessage.innerHTML = 'Repeat The Sequence'
     }, 600 * moves.length)
 }
 
@@ -102,6 +101,8 @@ function win() {
         const startButton = document.querySelector('#start-button')
         startButton.style.display = 'block'
         gameMessage.style.display = 'none'
+        currentLevel = 1
+        updateLevel()
     }, 3000);
 }
 
