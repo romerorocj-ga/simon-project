@@ -24,10 +24,24 @@ Game of lights and sounds in which players must repeat random sequences of light
     - I want to be able to experince each level harder
 
 ## Screenshots of Final Game
-![Alt text](startofgame.png)
-![Alt text](playingthegame.png)
-![Alt text](lossofgame.png)
-![Alt text](wonthegame.png)
+<img width="1097" alt="startofgame" src="https://github.com/romerorocj-ga/simon-project/assets/140639820/6578d6f6-d49a-4d2d-aa41-5c93cc2104a5">
+
+<img width="1102" alt="playingthegame" src="https://github.com/romerorocj-ga/simon-project/assets/140639820/bb0c7db1-2771-4615-b8e4-e65235614fe9">
+
+<img width="1102" alt="lossofgame" src="https://github.com/romerorocj-ga/simon-project/assets/140639820/f01befe8-0bec-4a8f-89bc-25066547f942">
+
+<img width="1102" alt="wonthegame" src="https://github.com/romerorocj-ga/simon-project/assets/140639820/6269e9bf-d804-4a31-a7bf-8d773fb79b6f">
+
+## Design and Asthetics of the app
+-  I want it be clean
+-  I want it to have red, yellow, green and blue panels that light up
+-  The game exists on a circle with panels in it the player will be selecting
+-  Makes sounds each time it switches colors and each time its pressed
+
+## Next Steps
+- Include a power on button that makes the game functions turn on 
+- Add an extra panel with another color to make it extra hard to follow the sequence
+- Add more styling to the board
 
 ## Pseudocode
 -  Four different buttons, with a unique color and sound which is activated when pressed
@@ -37,7 +51,7 @@ Game of lights and sounds in which players must repeat random sequences of light
 - State Variables
     - Game board is 1 big array that holds 4 smaller arrays for each color 
     - Moves
-    - CompMoves
+    - totalMoves
     - Winner - null until completing each level
     - The sequence is being generated randomly 
     - Level begins at 1
@@ -51,7 +65,6 @@ Game of lights and sounds in which players must repeat random sequences of light
 - Upon loading the app
     - Intialze all state variables
         - Create the array of 4 nested arrays
-        - Turn variable should be set to 1 for Player One
         - Winner should be null
     - Render changes to the DOM
         - Render the board of the game
@@ -71,16 +84,6 @@ Game of lights and sounds in which players must repeat random sequences of light
     -  When the player wins, a congrats message will show up and the play again button.
     - If they lose the Try again message the play again button will show
 
-## Design and Asthetics of the app
--  I want it be clean
--  I want it to have red, yellow, green and blue panels that light up
--  The game exists on a circle with panels in it the player will be selecting
--  Makes sounds each time it switches colors and each time its pressed
-
-## Next Steps
-- Include a power on button that makes the game functions turn on 
-- Add an extra panel with another color to make it extra hard to follow the sequence
-- Add more styling to the board
 
 ## Wireframe
 

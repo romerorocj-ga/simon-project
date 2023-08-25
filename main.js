@@ -67,7 +67,7 @@ function panelClick(e) {
         moves.shift()
 
         if (moves.length === 0) {
-            if (totalMoves > 3) {
+            if (totalMoves > 10) {
                 win()
             } else {
                 currentLevel++
